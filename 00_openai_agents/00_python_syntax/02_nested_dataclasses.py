@@ -1,9 +1,3 @@
-"""
-02_nested_dataclasses.py - Working with nested dataclasses
-
-This file demonstrates how to properly structure and work with nested dataclasses.
-"""
-
 from dataclasses import dataclass, field, asdict
 from typing import List, Dict, Optional
 import json
