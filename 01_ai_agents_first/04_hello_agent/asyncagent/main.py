@@ -19,13 +19,16 @@ external_client = AsyncOpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
-model = OpenAIChatCompletionsModel(
-    model="gemini-2.0-flash",
-    openai_client=external_client
-)
+# model = OpenAIChatCompletionsModel(
+#     model="gemini-2.0-flash",
+#     openai_client=external_client
+# )
 
 config = RunConfig(
-    model=model,
+    model=OpenAIChatCompletionsModel(
+    model="gemini-2.0-flash",
+    openai_client=external_client
+),
     model_provider=external_client,
     tracing_disabled=True
 )
@@ -35,7 +38,12 @@ async def main():
     agent = Agent(
         name="Assistant",
         instructions="You are helpful Assistent.",
-        model=model
+        # agr hm alag se model use krte hai to as trha os ko batate hai ke 
+        # gemini ka model use kia hai
+        model= OpenAIChatCompletionsModel(
+            model="gemini-2.0-flash",
+            openai_client=external_client
+            )
     )
 
     result = await Runner.run(agent, "Tell me about recursion in programming.", run_config=config)
@@ -44,6 +52,9 @@ async def main():
     # Looping in smaller pieces,
     # Endless by design.
 
+# Agent Level: Har agent apna model rakhta hai.
+# Run Level: Model run ke time decide hota hai.
+# Global Level: Sab agents ek hi model use karte hain by default.
 
 if __name__ == "__main__":
     asyncio.run(main())
