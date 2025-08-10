@@ -5,7 +5,6 @@ import chainlit as cl
 from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel
 from agents.run import RunConfig
 
-
 load_dotenv
 
 gemini_api_key = os.getenv("GEMINI_API_KEY")
