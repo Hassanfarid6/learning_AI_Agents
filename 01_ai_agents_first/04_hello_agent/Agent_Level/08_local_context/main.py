@@ -44,7 +44,8 @@ async def special_prompt(special_context: RunContextWrapper[UserContext], agent:
 math_agent: Agent = Agent(
     name="Genius",
     instructions=special_prompt,
-    model=llm_model, tools=[search]
+    model=llm_model, 
+    tools=[search]
     )
 # [{"role": "system", "content": "..."}, {"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]
 
