@@ -1,4 +1,6 @@
 Regular Updates
 
-06_basic_tools Learning...
-model Setting perementer 07_repo
+06_basic_tools 06_repo
+Model Setting perementer 07_repo
+08_local_context 
+09_dynamic_instructions
