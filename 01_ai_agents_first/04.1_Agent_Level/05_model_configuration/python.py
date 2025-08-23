@@ -57,6 +57,10 @@ client = AsyncOpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
+model = OpenAIChatCompletionsModel(
+            model="gemini-2.0-flash",
+            openai_client=client
+)
 set_tracing_disabled(disabled=True)
 
 async def main():
@@ -64,7 +68,7 @@ async def main():
     agent = Agent(
         name="Assistant",
         instructions="You only respond in haikus.",
-        model=OpenAIChatCompletionsModel(model="gemini-2.0-flash", openai_client=client),
+        model=model
     )
 
     result = await Runner.run(
