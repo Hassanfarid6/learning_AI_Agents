@@ -51,12 +51,13 @@ math_agent: Agent = Agent(
 
 async def call_agent():
     # Call the agent with a specific input
-    user_context = UserContext(username="abdullah", city="Karachi, pakistan")
+    # Note: This local context is not exposed to the LLM. It’s solely for your backend logic and operations.
+    user_context = UserContext(username="Hassan_Ali", city="Karachi, pakistan")
 
     output = await Runner.run(
         starting_agent=math_agent, 
         input="search for the best math tutor in my area",
-        context=user_context
+        context=user_context 
         )
     print(f"\n\nOutput: {output.final_output}\n\n")
     
