@@ -38,7 +38,10 @@ def main():
         model_settings=ModelSettings(temperature=0.1),
         model=model
     )
-    
+# Low (0.1-0.3): Math, facts, precise instructions
+# Medium (0.4-0.6): General conversation, explanations
+# High (0.7-0.9): Creative writing, brainstorming
+# Note: For gemini temprature range extends to 2.0
     agent_hot = Agent(
         name="Hot Agent",
         instructions="You are a helpful assistant.",
