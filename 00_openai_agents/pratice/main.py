@@ -31,7 +31,7 @@ model: OpenAIChatCompletionsModel = OpenAIChatCompletionsModel(
 def check_enable(contxt: RunContextWrapper, agent: Agent) -> bool:
     if contxt.context.inputType == "weather":
         return True
-    elif contxt.context.inputType == "none":
+    elif contxt.context.inputType == "clear_sky":
         return True
     else:
         return False
@@ -43,6 +43,7 @@ def get_current_weather(location: str, unit: str = "celsius") -> str:
     """Get the current weather in a given location"""
     # For the sake of this example, we'll return a hardcoded response.
     return f"The current weather in {location} is 28 degrees {unit} with clear skies."
+
 
 @function_tool(is_enabled=check_enable)
 def get_weather(location: str, unit: str = "celsius") -> str:
@@ -61,7 +62,7 @@ async def main() -> None:
     )
     context = myContext(
         # inputType="weather"
-        inputType="none"
+        inputType="clear_sky"
     )
     result = await Runner.run(
         starting_agent=agent,
