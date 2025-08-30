@@ -7,3 +7,4 @@ Model Setting perementer 07_repo
 10_streaming
 11_agent_clone
 12_basic_tracing
+13_agents_as_tool
