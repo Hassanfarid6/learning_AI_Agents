@@ -14,10 +14,16 @@ gemini_api_key: str | None = os.environ.get("GEMINI_API_KEY")
 set_tracing_disabled(disabled=True)
 
 # 1. Which LLM Service?
-external_client: AsyncOpenAI = AsyncOpenAI(api_key=gemini_api_key, base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
+external_client: AsyncOpenAI = AsyncOpenAI(
+    api_key=gemini_api_key,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+    )
 
 # 2. Which LLM Model?
-llm_model: OpenAIChatCompletionsModel = OpenAIChatCompletionsModel(model="gemini-2.5-flash", openai_client=external_client)
+llm_model: OpenAIChatCompletionsModel = OpenAIChatCompletionsModel(
+    model="gemini-2.5-flash",
+    openai_client=external_client
+    )
 
 @dataclass
 class UserContext:
@@ -47,9 +53,17 @@ async def call_agent():
         input="search for the best math tutor in my area",
         context=user_context
         )
-    # print("\n--- Streaming Output ---\n", output.context_wrapper, "\n-----------------------\n")
+    const = 0
+    print("\n--- Streaming Output ---\n", output.context_wrapper, "\n-----------------------\n")
     async for event in output.stream_events():
+        const += 1
+        # if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent):
+        #     print(event.data.delta, end="", flush=True)
+        
+        # I want to see the full event data for each event
+        print(f"<--- Event {const} --->")
         print(event)
+        
         # See this for more details and to add different filters: 
         # https://openai.github.io/openai-agents-python/streaming/
 
