@@ -8,3 +8,5 @@ Model Setting perementer 07_repo
 11_agent_clone
 12_basic_tracing
 13_agents_as_tool
+14_basic_handsoff
+15_advanced_tools
