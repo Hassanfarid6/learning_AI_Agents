@@ -34,7 +34,7 @@ async def main():
     try:
         res = await Runner.run(base_agent, "What is weather in Lahore", max_turns=2)
         print("Items ---->>>" ,res.new_items)
-        print( "Final OutPut ===>>>",res.final_output)
+        print( "Final OutPut --->>>",res.final_output)
     except MaxTurnsExceeded as e:
         print(f"Max turns exceeded: {e}")
 
