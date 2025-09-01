@@ -41,15 +41,12 @@ expert_agent = Agent(
     model=model,
 )
 
-agent.handoffs = [
-    handoff(expert_agent, is_enabled=lambda ctx, agent: ctx.context.has_permission)
-]
+# agent.handoffs = [
+#     handoff(expert_agent, is_enabled=lambda ctx, agent: ctx.context.has_permission)
+# ]
 
-# ✅ Correct handoff condition
-agent.handoffs = [
-    handoff(expert_agent, is_enabled=lambda ctx, agent: ctx.has_permission)
-]
-
+# ✅ simple handoff (no `is_enabled` here)
+agent.handoffs = [handoff(expert_agent)]
 async def main():
     context = UserContext(user_id="123", subscription_tier="premium", has_permission=False)
 
