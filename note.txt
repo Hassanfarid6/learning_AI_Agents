@@ -10,3 +10,5 @@ Model Setting perementer 07_repo
 13_agents_as_tool
 14_basic_handsoff
 15_advanced_tools
+16_advanced_handoffs
+17_structured_output
