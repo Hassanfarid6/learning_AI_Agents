@@ -76,4 +76,5 @@ Next meeting: January 29, 2024
 result = Runner.run_sync(agent, meeting_transcript)
 
 print("=== Meeting Minutes ===")
+# print(f"---->>: {', '.join(result.final_output.attendees)} attended the {result.final_output.meeting_title} on {result.final_output.date}.")
 print(f"Meeting Minutes: {result.final_output}")

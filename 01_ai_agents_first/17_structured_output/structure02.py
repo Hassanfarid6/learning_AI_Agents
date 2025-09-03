@@ -2,6 +2,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, set_tracing_disabled, ModelSettings, function_tool
+from pretty_print import print_pretty_json
 
 # 🌿 Load environment variables
 load_dotenv()
@@ -79,10 +80,25 @@ print(f"Email: {result.final_output.email}")
 print(f"Phone: {result.final_output.phone}")
 print(f"Summary: {result.final_output.summary}")
 
+# print("\nEducation:")
+# for edu in result.final_output.education:
+#     gpa_str = f", GPA: {edu.gpa}" if edu.gpa else ""
+#     print(f"  • {edu.degree} from {edu.institution} ({edu.graduation_year}){gpa_str}")
 print("\nEducation:")
 for edu in result.final_output.education:
     gpa_str = f", GPA: {edu.gpa}" if edu.gpa else ""
     print(f"  • {edu.degree} from {edu.institution} ({edu.graduation_year}){gpa_str}")
+
+# print("\nExperience:")
+# for exp in result.final_output.experience:
+#     end_year = exp.end_year if exp.end_year else "present"
+#     print(f"  • {exp.position} at {exp.company} ({exp.start_year}-{end_year})")
+#     for resp in exp.responsibilities:
+#         print(f"    - {resp}")
+
+# print(f"\nSkills: {', '.join(result.final_output.skills)}")
+# print(f"Languages: {', '.join(result.final_output.languages)}")
+
 
 print("\nExperience:")
 for exp in result.final_output.experience:
@@ -93,3 +109,5 @@ for exp in result.final_output.experience:
 
 print(f"\nSkills: {', '.join(result.final_output.skills)}")
 print(f"Languages: {', '.join(result.final_output.languages)}")
+
+print_pretty_json(result.final_output)
