@@ -12,3 +12,5 @@ Model Setting perementer 07_repo
 15_advanced_tools
 16_advanced_handoffs
 17_structured_output
+18_guardrails
+19_agent_lifecycle
