@@ -50,7 +50,7 @@ def get_weather(city: str) -> str:
 
 news_agent: Agent = Agent(
     name="NewsAgent",
-    instructions="You are a helpful news assistant.in roman urdu.",
+    instructions="You are a helpful news assistant.",
     model=llm_model,
     hooks=HelloAgentHooks("NewsAgentLifecycle")
 )
@@ -68,5 +68,3 @@ base_agent: Agent = Agent(
 res = Runner.run_sync(base_agent, "What's the latest news about Qwen Code - seems like it can give though time to claude code.")
 print("--->",res.last_agent.name)
 print("---> Final Output: ",res.final_output)
-
-# Now check the trace in 
