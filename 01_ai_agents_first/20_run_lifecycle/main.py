@@ -5,7 +5,7 @@ from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, funct
 _: bool = load_dotenv(find_dotenv())
 
 # ONLY FOR TRACING
-# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "")
 
 gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
 
@@ -16,7 +16,7 @@ external_client: AsyncOpenAI = AsyncOpenAI(
 )
 
 # 2. Which LLM Model?
-_model: OpenAIChatCompletionsModel = OpenAIChatCompletionsModel(
+llm_model: OpenAIChatCompletionsModel = OpenAIChatCompletionsModel(
     model="gemini-2.5-flash",
     openai_client=external_client
 )
@@ -31,14 +31,14 @@ def get_weather(city: str) -> str:
 news_agent: Agent = Agent(
     name="NewsAgent",
     instructions="You are a helpful news assistant.",
-    model=_model,
+    model=llm_model,
 )
 
 
 base_agent: Agent = Agent(
     name="WeatherAgent",
     instructions="You are a helpful assistant. Talk about weather and let news_agent handle the news things",
-    model=_model,
+    model=llm_model,
     tools=[get_weather],
     # handoffs=[news_agent]
 )
