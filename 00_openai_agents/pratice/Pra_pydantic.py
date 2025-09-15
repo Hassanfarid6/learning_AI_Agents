@@ -1,23 +1,31 @@
-# from pydantic import BaseModel
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
+from typing import Optional
+from datetime import datetime
+import uuid
 
 
 class User(BaseModel):
     id: int
     name: str
-    age: int
+    age: int= 12
+    is_active: bool = True
+    email: EmailStr | None = None
 
 # ✅ Correct data
 # user = User(id=1, name="Hasan", age=21)
 # print(user)
 
+data = {"id": "1", "name": "ALi", "email": "ali@example.com"}
+user11 = User.model_validate(data)        # use model_validate in v2
+# print(user11)  
+
 # also works with type coercion
-# user1 = User(id=23, name="Hasan", age="twenty-one")
+# user1 = User(id=23, name="Hasan", age="21")
 # print(user1)
 
 
 # # ❌ Wrong data
-# user2 = User(id="23", name="Hasan", age="21")
+# user2 = User(id="23", name="Hasan", age="twenty-one")
 
 
 class Users(BaseModel):
@@ -31,7 +39,6 @@ class Users(BaseModel):
 # print(type(users.id), type(users.age))
 # print(users.id + 1,",", users.age + 1)  # works fine because of type coercion
 
-from typing import Optional
 
 class User1(BaseModel):
     id: int
@@ -110,9 +117,6 @@ class User4(BaseModel):
 # users1 = User4(id=1, name="Hasan", age=3) # nagative age will raise error
 # print(users1)
 
-from pydantic import BaseModel, Field
-from datetime import datetime
-import uuid
 
 class User5(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))  # auto-generate unique ID
@@ -140,17 +144,78 @@ class User6(BaseModel):
 # user = User6(name="Hasan", age=22)  # Valid
 # print(user)
 
-from pydantic import BaseModel, validator
+class Event2(BaseModel):
+    id: int
+    created_at: datetime = datetime.now()   # BAD: same timestamp reused!
 
-class User(BaseModel):
-    name: str
-    age: int
+class Event(BaseModel):
+    id: int
+    created_at: datetime = Field(default_factory=datetime.now)
+
+
+#generate a print statement for this to explain
+
+# event1 = Event2(id=1)
+# event2 = Event(id=2)
+# event3 = Event2(id=3)
+# event4 = Event(id=4)
+
+# print(event1)
+# print(event2)
+ 
+# print(event3)
+# print(event4)
+
+from pydantic import  validator
+
+class User7(BaseModel):
+    name: str=Field(..., alias="full_name")
+    age: int=9
 
     @validator("name")
     def no_numbers_in_name(cls, v):
         if any(char.isdigit() for char in v):
             raise ValueError("Name cannot contain numbers")
         return v
-# user = User(name="Hasan", age=22)  # Valid
+    
+# user = User7(name="Hasan", age=22)  # Valid
 # print(user)
-# user1 = User(name="Hasan1", age=22)  # Invalid, raises ValueError
+# user1 = User7(name="Hasan1", age=22)  # Invalid, raises ValueError
+
+
+# Incoming data uses "full_name"
+data = {"full_name": "Hasan Farid", "age": 21}
+
+use = User7(**data)
+# print(use.name)        # "Hasan Farid"
+# print(use.model_dump())      # {"name": "Hasan Farid", "age": 21}
+# print(use.model_dump(by_alias=True))
+
+from pydantic import BaseModel, field_validator
+
+class Product(BaseModel):
+    price: float
+
+    # Validator in "before" mode: runs on raw input before parsing
+    @field_validator("price", mode="before")
+    def parse_price(cls, v):
+        if isinstance(v, str) and v.endswith("$"):
+            v = v[:-1]  # Remove currency symbol
+        return v
+
+    # Validator in "after" mode: runs on parsed/converted value
+    @field_validator("price", mode="after")
+    def validate_price(cls, v):
+        if v < 0:
+            raise ValueError("Price must be a positive value")
+        return v
+
+# # Example usage
+# product1 = Product(price="100$")
+# print(product1)  # Product(price=100.0)
+
+# product2 = Product(price=50)
+# print(product2)  # Product(price=50.0)
+
+# This will raise a ValueError because the price is negative
+# product3 = Product(price=-10)
