@@ -69,6 +69,7 @@ class User(BaseModel):
 
 # ORM object banate hain
 orm_user = UserORM(id=1, name="Hasan", age=21)
+# print(orm_user) # <__main__.UserORM object at 0x7f8e2c3c1d60>
 
 # Pydantic model ke through parse karte hain
 user = User.model_validate(orm_user)
