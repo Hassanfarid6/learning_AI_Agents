@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -72,7 +71,7 @@ def demo_bad_usage():
 
 if __name__ == "__main__":
     # print("=== GOOD DATACLASS EXAMPLES ===")
-    # demo_good_usage()
+    demo_good_usage()
     
-    print("\n=== BAD REGULAR CLASS EXAMPLES ===")
-    demo_bad_usage() 
+    # print("\n=== BAD REGULAR CLASS EXAMPLES ===")
+    # demo_bad_usage() 
