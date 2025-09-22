@@ -1,5 +1,6 @@
-uv init --package myproject
+uv pip install chainlit
 
+uv init --package myproject
 cd myproject
 
 uv add litellm

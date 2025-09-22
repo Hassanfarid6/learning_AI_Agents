@@ -9,6 +9,7 @@ class Person:
     age: int
     email: Optional[str] = None
     # Using field() with default_factory for mutable default values
+    # as ke zarya add krskte hai list, append or remove krskte hai
     tags: List[str] = field(default_factory=list)
     
     def is_adult(self) -> bool:
