@@ -1,0 +1,15 @@
+Inspect AI ya “inspect-ai” ek open-source Python framework hai, jo AI language models (LLMs)
+ke evaluations (testing, benchmark, performance measure) ke liye banaya gaya hai.
+Top-k And Top-p
+One Short Prompting
+few Short Prompting
+Chain of Thought
+docker
+llm cli tools
+
+
+// Class 02 topics 
+
+https://github.com/panaversity/learn-low-code-agentic-ai/tree/main/00_prompt_engineering
+Advanced Prompting Strategies
+ReAct (Reasoning + Acting)
