@@ -13,3 +13,4 @@ llm cli tools
 https://github.com/panaversity/learn-low-code-agentic-ai/tree/main/00_prompt_engineering
 Advanced Prompting Strategies
 ReAct (Reasoning + Acting)
+Tree of Thoughts (ToT)
