@@ -61,7 +61,7 @@ role, input/output format, XML-based tasks, and JSON summaries — enabling **au
 
 
 
-<!-- # **🎓 Class 04 Summary — Context Engineering (31 Oct 2025)** -->
+# **🎓 Class 04 Summary — Context Engineering (31 Oct 2025)**
 Today we explored the complete AI prompting framework: **6-Step Formula for 10x Better Results**.
 
 ~~------------------------------~~
