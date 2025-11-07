@@ -60,6 +60,7 @@ role, input/output format, XML-based tasks, and JSON summaries — enabling **au
 4️⃣ Explain the burger analogy for AI agents.
 
 
+<!-- Panding  -->
 
 # **🎓 Class 04 Summary — Context Engineering (31 Oct 2025)**
 Today we explored the complete AI prompting framework: **6-Step Formula for 10x Better Results**.
@@ -118,3 +119,5 @@ After building your complete prompt, add this powerful ending:
 Ask me 10 questions to refine this strategy
 ```
 https://github.com/panaversity/learn-low-code-agentic-ai/blob/main/00_prompt_engineering/six_part_prompting_framework.md
+
+~~------------------------------~~
